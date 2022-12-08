@@ -4,15 +4,20 @@ services:
         image: wurstmeister/zookeeper
         hostname: zookeeper
         container_name: zookeeper
+        networks:
+          - fast-kafka-api-network
 
-    kafka-1:
+    kafka:
         image: wurstmeister/kafka
-        hostname: kafka-1
+#        scale: 3
+        deploy:
+            replicas: 3
         environment:
+            HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
             KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
             KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTER:PLAINTEXT
-            KAFKA_ADVERTISED_LISTENERS: INTER://kafka-1:9092
-            KAFKA_LISTENERS: INTER://kafka-1:9092
+            KAFKA_ADVERTISED_LISTENERS: INTER://_{HOSTNAME_COMMAND}:9092
+            KAFKA_LISTENERS: INTER://_{HOSTNAME_COMMAND}:9092
             KAFKA_INTER_BROKER_LISTENER_NAME: INTER
             KAFKA_CREATE_TOPICS: >-
               training_request:${NUM_PARTITIONS:-6}:${REPLICATION_FACTOR:-3},
@@ -28,41 +33,5 @@ services:
             interval: 5s
             timeout: 10s
             retries: 5
-
-    kafka-2:
-        image: wurstmeister/kafka
-        hostname: kafka-2
-        environment:
-            KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTER:PLAINTEXT
-            KAFKA_ADVERTISED_LISTENERS: INTER://kafka-2:9092
-            KAFKA_LISTENERS: INTER://kafka-2:9092
-            KAFKA_INTER_BROKER_LISTENER_NAME: INTER
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        depends_on:
-            - zookeeper
-        healthcheck:
-            test: [ "CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181" ]
-            interval: 5s
-            timeout: 10s
-            retries: 5
-
-    kafka-3:
-        image: wurstmeister/kafka
-        hostname: kafka-3
-        environment:
-            KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTER:PLAINTEXT
-            KAFKA_ADVERTISED_LISTENERS: INTER://kafka-3:9092
-            KAFKA_LISTENERS: INTER://kafka-3:9092
-            KAFKA_INTER_BROKER_LISTENER_NAME: INTER
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        depends_on:
-            - zookeeper
-        healthcheck:
-            test: [ "CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181" ]
-            interval: 5s
-            timeout: 10s
-            retries: 5
+        networks:
+          - fast-kafka-api-network

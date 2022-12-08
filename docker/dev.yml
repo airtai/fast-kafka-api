@@ -1,80 +1,29 @@
 version: "3"
 services:
-    zookeeper:
-        hostname: $USER-zookeeper
-        container_name: $USER-zookeeper
-        ports:
-            - "$ZOOKEEPER_PORT:2181"
-            - "${PORT_PREFIX}22:22"
-            - "${PORT_PREFIX}2888:2888"
-            - "${PORT_PREFIX}3888:3888"
-        networks:
-            - fast-kafka-api-network
-
-    kafka-1:
-        container_name: $USER-kafka-1
-        ports:
-            - "9092"
-        networks:
-            - fast-kafka-api-network
-
-    kafka-2:
-        container_name: $USER-kafka-2
-        ports:
-            - "9092"
-        networks:
-            - fast-kafka-api-network
-
-    kafka-3:
-        container_name: $USER-kafka-3
-        ports:
-            - "9092"
-        networks:
-            - fast-kafka-api-network
-
     fast-kafka-api-devel:
-        image: $BASE_DOCKER_IMAGE
-        hostname: $USER-fast-kafka-api-devel
-        container_name: $USER-fast-kafka-api-devel
+        image: ghcr.io/airtai/nbdev-mkdocs
+        hostname: $DOCKER_COMPOSE_PROJECT-devel
+        container_name: $DOCKER_COMPOSE_PROJECT-devel
         ports:
-            - "$AIRT_JUPYTER_PORT:8888"
-            - "$AIRT_TB_PORT:6006"
-            - "$AIRT_DASK_PORT:8787"
-            - "$AIRT_DOCS_PORT:4000"
+            - "8888:8888"
+            - "4000:4000"
         networks:
             - fast-kafka-api-network
         volumes:
-            - $AIRT_PROJECT:/tf/fast-kafka-api
-            - $AIRT_DATA:/work/data
+            - $AIRT_PROJECT:/work/fast-kafka-api
             - /etc/passwd:/etc/passwd
             - /etc/group:/etc/group
             - /etc/shadow:/etc/shadow
             - $HOME/.ssh:$HOME/.ssh
             - $HOME/.gitconfig:/root/.gitconfig
-            - $HOME/.aws:/root/.aws
         environment:
             KAFKA_HOSTNAME: $KAFKA_HOSTNAME
             KAFKA_PORT: 9092
-            DB_DOWNLOAD_SIZE: $DB_DOWNLOAD_SIZE
-            ROOT_PATH: $ROOT_PATH
-            DOMAIN: localhost
-            JUPYTER_CONFIG_DIR: /root/.jupyter
             USER: $USER
             USERNAME: $USERNAME
-        user: $UID:$GID
-        deploy:
-            resources:
-                reservations:
-                    devices:
-                    - driver: nvidia
-                      device_ids: ['$GPU_PARAMS']
-                      capabilities: [gpu]
+            PRESERVE_ENVS: $PRESERVE_ENVS
         depends_on:
-            kafka-1:
-                condition: service_healthy
-            kafka-2:
-                condition: service_healthy
-            kafka-3:
+            kafka:
                 condition: service_healthy
 
 networks:
