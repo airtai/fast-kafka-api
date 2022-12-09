@@ -4,7 +4,7 @@
 __all__ = ['logger', 'ModelType', 'ModelTrainingRequest', 'EventData', 'RealtimeData', 'TrainingDataStatus',
            'TrainingModelStatus', 'ModelMetrics', 'Prediction', 'create_ws_server']
 
-# %% ../nbs/guides/Guide_01_Intro.ipynb 2
+# %% ../nbs/guides/Guide_01_Intro.ipynb 14
 from typing import *
 
 import os
@@ -30,10 +30,10 @@ from .application import FastKafkaAPI, KafkaErrorMsg
 from .asyncapi import KafkaMessage
 from .logger import get_logger
 
-# %% ../nbs/guides/Guide_01_Intro.ipynb 4
+# %% ../nbs/guides/Guide_01_Intro.ipynb 16
 logger = get_logger(__name__)
 
-# %% ../nbs/guides/Guide_01_Intro.ipynb 6
+# %% ../nbs/guides/Guide_01_Intro.ipynb 18
 class ModelType(str, Enum):
     churn = "churn"
     propensity_to_buy = "propensity_to_buy"
@@ -207,7 +207,7 @@ class Prediction(KafkaMessage):
         le=1.0,
     )
 
-# %% ../nbs/guides/Guide_01_Intro.ipynb 7
+# %% ../nbs/guides/Guide_01_Intro.ipynb 19
 _total_no_of_records = 0
 _no_of_records_received = 0
 
