@@ -1,0 +1,954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Extension of FastAPI with Kafka event handlers">
+      
+      
+        <meta name="author" content="airt">
+      
+      
+        <link rel="canonical" href="https://airtai.github.io/fast-kafka-api/999_Test_Utils/">
+      
+      
+      
+      <link rel="icon" href="../overrides/images/compass-outline.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>999 Test Utils - FastKafkaAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../overrides/css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1ZWQNQNSZ8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1ZWQNQNSZ8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1ZWQNQNSZ8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FastKafkaAPI - 999 Test Utils" />
+  <meta property="og:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta property="og:url" content="https://airtai.github.io/fast-kafka-api/999_Test_Utils/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FastKafkaAPI - 999 Test Utils" />
+  <meta name="twitter:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta name="twitter:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#true_after" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FastKafkaAPI" class="md-header__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FastKafkaAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              999 Test Utils
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FastKafkaAPI" class="md-nav__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    FastKafkaAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        FastKafkaAPI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_01_Intro/" class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_02_First_Steps/" class="md-nav__link">
+        First Steps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/application/" class="md-nav__link">
+        fast_kafka_api.application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/testing/" class="md-nav__link">
+        fast_kafka_api.testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_cli_docs/fast-kafka-api/" class="md-nav__link">
+        fast-kafka-api
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#true_after" class="md-nav__link">
+    true_after
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create_missing_topics" class="md-nav__link">
+    create_missing_topics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create_testing_topic" class="md-nav__link">
+    create_testing_topic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create_and_fill_testing_topic" class="md-nav__link">
+    create_and_fill_testing_topic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nb_safe_seed" class="md-nav__link">
+    nb_safe_seed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mock_aiokafkaproducer_send" class="md-nav__link">
+    mock_AIOKafkaProducer_send
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change_dir" class="md-nav__link">
+    change_dir
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run_script_and_cancel" class="md-nav__link">
+    run_script_and_cancel
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>999 Test Utils</h1>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+
+<div class="highlight"><pre><span></span><code><span class="c1"># allows async calls in notebooks</span>
+
+<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L47"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="true_after">true_after<a class="headerlink" href="#true_after" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> true_after (seconds:float)
+</code></pre></div>
+</blockquote>
+<p>Function returning True after a given number of seconds</p>
+<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="n">true_after</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">f</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">f</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">f</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L63"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="create_missing_topics">create_missing_topics<a class="headerlink" href="#create_missing_topics" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> create_missing_topics (admin:confluent_kafka.admin.AdminClient,
+                        topic_names:List[str],
+                        num_partitions:Optional[int]=None,
+                        replication_factor:Optional[int]=None, **kwargs)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin</td>
+<td>AdminClient</td>
+<td></td>
+<td>type: ignore</td>
+</tr>
+<tr>
+<td>topic_names</td>
+<td>typing.List[str]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>num_partitions</td>
+<td>typing.Optional[int]</td>
+<td>None</td>
+<td></td>
+</tr>
+<tr>
+<td>replication_factor</td>
+<td>typing.Optional[int]</td>
+<td>None</td>
+<td></td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><strong>None</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check if topics are created</span>
+
+<span class="n">kafka_admin</span> <span class="o">=</span> <span class="n">AdminClient</span><span class="p">(</span><span class="n">kafka_config</span><span class="p">)</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<span class="n">create_missing_topics</span><span class="p">(</span><span class="n">kafka_admin</span><span class="p">,</span> <span class="n">topics</span><span class="p">)</span>
+
+<span class="n">existing_topics</span> <span class="o">=</span> <span class="n">kafka_admin</span><span class="o">.</span><span class="n">list_topics</span><span class="p">()</span><span class="o">.</span><span class="n">topics</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">existing_topics</span>
+
+<span class="c1"># Cleanup</span>
+<span class="p">[</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wrap_future</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">kafka_admin</span><span class="o">.</span><span class="n">delete_topics</span><span class="p">(</span><span class="n">topics</span><span class="o">=</span><span class="n">topics</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>23-01-10 09:11:57.028 [INFO] __main__: create_missing_topics([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]): new_topics = [NewTopic(topic=A,num_partitions=3), NewTopic(topic=B,num_partitions=3), NewTopic(topic=C,num_partitions=3)]
+
+[None, None, None]
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L97"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="create_testing_topic">create_testing_topic<a class="headerlink" href="#create_testing_topic" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> create_testing_topic (kafka_config:Dict[str,Any], topic_prefix:str,
+                       seed:Optional[int]=None)
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">kafka_admin</span> <span class="o">=</span> <span class="n">AdminClient</span><span class="p">(</span><span class="n">kafka_config</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">create_testing_topic</span><span class="p">(</span><span class="n">kafka_config</span><span class="p">,</span> <span class="s2">&quot;my_topic_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">topic</span><span class="p">:</span>
+    <span class="c1"># Check if topic is created and exists in topic list</span>
+    <span class="n">existing_topics</span> <span class="o">=</span> <span class="n">kafka_admin</span><span class="o">.</span><span class="n">list_topics</span><span class="p">()</span><span class="o">.</span><span class="n">topics</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">existing_topics</span>
+
+<span class="c1"># Check if topic is deleted after exiting context</span>
+<span class="n">existing_topics</span> <span class="o">=</span> <span class="n">kafka_admin</span><span class="o">.</span><span class="n">list_topics</span><span class="p">()</span><span class="o">.</span><span class="n">topics</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_topics</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>23-01-10 09:11:58.135 [INFO] __main__: create_missing_topics([&#39;my_topic_9167024629&#39;]): new_topics = [NewTopic(topic=my_topic_9167024629,num_partitions=3)]
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L132"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="create_and_fill_testing_topic">create_and_fill_testing_topic<a class="headerlink" href="#create_and_fill_testing_topic" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> create_and_fill_testing_topic (msgs:List[bytes],
+                                kafka_config:Dict[str,str]={&#39;bootstrap.ser
+                                vers&#39;: &#39;localhost:9092&#39;}, seed:int)
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">msgs_sent</span> <span class="o">=</span> <span class="mi">317</span>
+<span class="n">msgs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Hello world </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">05d</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">msgs_sent</span><span class="p">)]</span>
+
+<span class="k">async</span> <span class="k">with</span> <span class="n">create_and_fill_testing_topic</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">topic</span><span class="p">:</span>
+    <span class="n">consumer</span> <span class="o">=</span> <span class="n">AIOKafkaConsumer</span><span class="p">(</span>
+        <span class="n">topic</span><span class="p">,</span>
+        <span class="n">bootstrap_servers</span><span class="o">=</span><span class="n">kafka_config</span><span class="p">[</span><span class="s2">&quot;bootstrap.servers&quot;</span><span class="p">],</span>
+        <span class="n">auto_offset_reset</span><span class="o">=</span><span class="s2">&quot;earliest&quot;</span><span class="p">,</span>
+        <span class="n">max_poll_records</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Consumer </span><span class="si">{</span><span class="n">consumer</span><span class="si">}</span><span class="s2"> created.&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">consumer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Consumer </span><span class="si">{</span><span class="n">consumer</span><span class="si">}</span><span class="s2"> started.&quot;</span><span class="p">)</span>
+    <span class="n">is_shutting_down_f</span> <span class="o">=</span> <span class="n">true_after</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">msgs_received</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">msgs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">consumer</span><span class="o">.</span><span class="n">getmany</span><span class="p">(</span><span class="n">timeout_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">msgs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">msgs_received</span> <span class="o">=</span> <span class="n">msgs_received</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_shutting_down_f</span><span class="p">():</span>
+                <span class="k">break</span>
+
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">msgs_received</span> <span class="o">==</span> <span class="n">msgs_sent</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total messages received: </span><span class="si">{</span><span class="n">msgs_received</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">consumer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Consumer </span><span class="si">{</span><span class="n">consumer</span><span class="si">}</span><span class="s2"> stopped.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>23-01-10 09:12:00.202 [INFO] __main__: create_missing_topics([&#39;my_topic_9167024629&#39;]): new_topics = [NewTopic(topic=my_topic_9167024629,num_partitions=3)]
+23-01-10 09:12:01.210 [INFO] __main__: Producer &lt;aiokafka.producer.producer.AIOKafkaProducer object&gt; created.
+23-01-10 09:12:01.235 [INFO] __main__: Producer &lt;aiokafka.producer.producer.AIOKafkaProducer object&gt; started.
+23-01-10 09:12:01.271 [INFO] __main__: Sent messages: len(sent_msgs)=317
+23-01-10 09:12:01.273 [INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;my_topic_9167024629&#39;})
+23-01-10 09:12:01.278 [INFO] __main__: Consumer &lt;aiokafka.consumer.consumer.AIOKafkaConsumer object&gt; created.
+23-01-10 09:12:01.290 [INFO] aiokafka.consumer.group_coordinator: Metadata for topic has changed from {} to {&#39;my_topic_9167024629&#39;: 3}. 
+23-01-10 09:12:01.295 [INFO] __main__: Consumer &lt;aiokafka.consumer.consumer.AIOKafkaConsumer object&gt; started.
+Total messages received: 317
+23-01-10 09:12:06.361 [INFO] __main__: Consumer &lt;aiokafka.consumer.consumer.AIOKafkaConsumer object&gt; stopped.
+23-01-10 09:12:06.364 [INFO] __main__: Producer &lt;aiokafka.producer.producer.AIOKafkaProducer object&gt; stoped.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># TODO: Send repeatedly?</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L163"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="nb_safe_seed">nb_safe_seed<a class="headerlink" href="#nb_safe_seed" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> nb_safe_seed (s:str)
+</code></pre></div>
+</blockquote>
+<p>Gets a unique seed function for a notebook</p>
+<p>Params: s: name of the notebook used to initialize the seed function</p>
+<p>Returns: A unique seed function</p>
+<div class="highlight"><pre><span></span><code><span class="n">seed</span> <span class="o">=</span> <span class="n">nb_safe_seed</span><span class="p">(</span><span class="s2">&quot;999_test_utils&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">seed</span><span class="p">()</span> <span class="o">==</span> <span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">seed</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L181"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="mock_aiokafkaproducer_send">mock_AIOKafkaProducer_send<a class="headerlink" href="#mock_aiokafkaproducer_send" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> mock_AIOKafkaProducer_send ()
+</code></pre></div>
+</blockquote>
+<p>Mocks <strong>send</strong> method of <strong>AIOKafkaProducer</strong></p>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L194"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="change_dir">change_dir<a class="headerlink" href="#change_dir" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> change_dir (d:str)
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1"># TODO: tests</span>
+<span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">original_wd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">original_wd</span> <span class="o">!=</span> <span class="n">d</span>
+    <span class="k">with</span> <span class="n">change_dir</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">==</span> <span class="n">d</span>
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">==</span> <span class="n">original_wd</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/testing.py#L203"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="run_script_and_cancel">run_script_and_cancel<a class="headerlink" href="#run_script_and_cancel" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> run_script_and_cancel (script:str, script_file:str, cmd:str,
+                        cancel_after:int)
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;python3 -m test.py&quot;</span>
+
+<span class="c1"># Check exit code 0</span>
+<span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;exit(0)&quot;</span>
+
+<span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">run_script_and_cancel</span><span class="p">(</span>
+    <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">script_file</span><span class="o">=</span><span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cancel_after</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="c1"># Check exit code 1</span>
+<span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;exit(1)&quot;</span>
+
+<span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">run_script_and_cancel</span><span class="p">(</span>
+    <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">script_file</span><span class="o">=</span><span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cancel_after</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">exit_code</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="c1"># Check exit code 0 and output to stdout and stderr</span>
+<span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">import sys</span>
+<span class="s2">sys.stderr.write(&quot;hello from stderr</span><span class="se">\\</span><span class="s2">n&quot;)</span>
+<span class="s2">sys.stderr.flush()</span>
+<span class="s2">print(&quot;hello, exiting with exit code 0&quot;)</span>
+<span class="s2">exit(0)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">run_script_and_cancel</span><span class="p">(</span>
+    <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">script_file</span><span class="o">=</span><span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cancel_after</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">exit_code</span>
+<span class="k">assert</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;hello from stderr</span><span class="se">\n</span><span class="s2">hello, exiting with exit code 0</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Check random exit code and output</span>
+<span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">print(&quot;hello</span><span class="se">\\</span><span class="s2">nexiting with exit code 143&quot;)</span>
+<span class="s2">exit(143)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">run_script_and_cancel</span><span class="p">(</span>
+    <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">script_file</span><span class="o">=</span><span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cancel_after</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">exit_code</span> <span class="o">==</span> <span class="mi">143</span>
+<span class="k">assert</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">exiting with exit code 143</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ok
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 onwards, airt
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    and
+    <a href="https://nbdev-mkdocs.airt.ai/" target="_blank" rel="noopener">
+      Material for nbdev
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../overrides/js/extra.js"></script>
+      
+        <script src="../overrides/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

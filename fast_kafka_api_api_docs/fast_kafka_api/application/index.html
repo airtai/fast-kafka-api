@@ -1,0 +1,1487 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Extension of FastAPI with Kafka event handlers">
+      
+      
+        <meta name="author" content="airt">
+      
+      
+        <link rel="canonical" href="https://airtai.github.io/fast-kafka-api/fast_kafka_api_api_docs/fast_kafka_api/application/">
+      
+      
+        <link rel="prev" href="../../../guides/Guide_02_First_Steps/">
+      
+      
+        <link rel="next" href="../testing/">
+      
+      <link rel="icon" href="../../../overrides/images/compass-outline.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>fast_kafka_api.application - FastKafkaAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../overrides/css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1ZWQNQNSZ8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1ZWQNQNSZ8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1ZWQNQNSZ8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FastKafkaAPI - fast_kafka_api.application" />
+  <meta property="og:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta property="og:url" content="https://airtai.github.io/fast-kafka-api/fast_kafka_api_api_docs/fast_kafka_api/application/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FastKafkaAPI - fast_kafka_api.application" />
+  <meta name="twitter:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta name="twitter:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fast_kafka_api.application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="FastKafkaAPI" class="md-header__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FastKafkaAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              fast_kafka_api.application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="FastKafkaAPI" class="md-nav__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    FastKafkaAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        FastKafkaAPI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/Guide_01_Intro/" class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/Guide_02_First_Steps/" class="md-nav__link">
+        First Steps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          fast_kafka_api.application
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        fast_kafka_api.application
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fast_kafka_api.application" class="md-nav__link">
+    fast_kafka_api.application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI" class="md-nav__link">
+    FastKafkaAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="FastKafkaAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.consumes" class="md-nav__link">
+    consumes()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.produces" class="md-nav__link">
+    produces()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.run_in_background" class="md-nav__link">
+    run_in_background()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        fast_kafka_api.testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fast_kafka_api_cli_docs/fast-kafka-api/" class="md-nav__link">
+        fast-kafka-api
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fast_kafka_api.application" class="md-nav__link">
+    fast_kafka_api.application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI" class="md-nav__link">
+    FastKafkaAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="FastKafkaAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.consumes" class="md-nav__link">
+    consumes()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.produces" class="md-nav__link">
+    produces()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast_kafka_api.application.FastKafkaAPI.run_in_background" class="md-nav__link">
+    run_in_background()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>fast_kafka_api.application</h1>
+
+<div class="doc doc-object doc-module">
+
+<a id="fast_kafka_api.application"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="fast_kafka_api.application.FastKafkaAPI" class="doc doc-heading">
+        <code>
+FastKafkaAPI        </code>
+
+
+
+<a href="#fast_kafka_api.application.FastKafkaAPI" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+        <details class="quote">
+          <summary>Source code in <code>fast_kafka_api/application.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FastKafkaAPI</span><span class="p">:</span>
+    <span class="nd">@delegates</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="n">_get_func_with_combined_sig</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">AIOKafkaConsumer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">fast_api_app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">asyncapi_route</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">contact</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">kafka_brokers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">root_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combined REST and Kafka service</span>
+
+<span class="sd">        Params:</span>
+<span class="sd">            fast_api_app: the FastAPI app, if None, one will be created</span>
+<span class="sd">            asyncapi_route: the route to where to mount the documentation. If **None**, the docs will not be mounted.</span>
+<span class="sd">            title: optional title for the documentation. If None, the title of passed fast_api_app will be used</span>
+<span class="sd">            description: optional description for the documentation. If None, the description of passed fast_api_app will be used</span>
+<span class="sd">            version: optional version for the documentation. If None, the version of passed fast_api_app will be used</span>
+<span class="sd">            contact: optional contact for the documentation. If None, the contact of passed fast_api_app will be used</span>
+<span class="sd">            kafka_brokers: dictionary describing kafka brokers used for generating documentation</span>
+<span class="sd">            root_path: path to where documentation will be created</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fast_api_app</span> <span class="o">=</span> <span class="n">fast_api_app</span>
+
+        <span class="c1"># this is neede for documentation generation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="n">description</span> <span class="k">if</span> <span class="n">description</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">version</span> <span class="k">if</span> <span class="n">version</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">version</span>
+        <span class="k">if</span> <span class="n">contact</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="o">**</span><span class="n">contact</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="o">**</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_service_info</span> <span class="o">=</span> <span class="n">KafkaServiceInfo</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">,</span>
+            <span class="n">contact</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_brokers</span> <span class="o">=</span> <span class="n">_get_kafka_brokers</span><span class="p">(</span><span class="n">kafka_brokers</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">root_path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">)</span>
+
+        <span class="c1"># this is used as default parameters for creating AIOProducer and AIOConsumer objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_config</span> <span class="o">=</span> <span class="n">_get_kafka_config</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ConsumeCallable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_producers_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span>  <span class="c1"># type: ignore</span>
+            <span class="n">Union</span><span class="p">[</span><span class="n">AIOKafkaProducer</span><span class="p">,</span> <span class="n">AIOKafkaProducerManager</span><span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>  <span class="c1"># type: ignore</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ProduceCallable</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># background tasks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bg_task_group_generator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">TaskGroup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bg_tasks_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">TaskGroup</span><span class="p">]</span>
+
+        <span class="c1"># todo: use this for errrors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_error_topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_path</span> <span class="o">/</span> <span class="s2">&quot;asyncapi&quot;</span>
+        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;spec&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span>
+            <span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span>
+            <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asyncapi&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_shutting_down</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_consumer_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_producer_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">redirect_root_to_asyncapi</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;/asyncapi&quot;</span><span class="p">)</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">redirect_asyncapi_docs</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;/asyncapi/index.html&quot;</span><span class="p">)</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/asyncapi.yml&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">download_asyncapi_yml</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">FileResponse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;spec&quot;</span> <span class="o">/</span> <span class="s2">&quot;asyncapi.yml&quot;</span><span class="p">)</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">on_startup</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_startup</span><span class="p">()</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;shutdown&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">on_shutdown</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_shutdown</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_on_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_on_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">consumes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;on_&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConsumeCallable</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">produces</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;to_&quot;</span><span class="p">,</span>
+        <span class="n">producer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AIOKafkaProducer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProduceCallable</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">run_in_background</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">_populate_consumers</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">is_shutting_down_f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_populate_producers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">generate_async_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_shutdown_consumers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_shutdown_producers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_populate_bg_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_shutdown_bg_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="fast_kafka_api.application.FastKafkaAPI.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fast_api_app</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">asyncapi_route</span><span class="o">=</span><span class="s1">&#39;/asyncapi&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kafka_brokers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bootstrap_servers</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="s1">&#39;aiokafka-0.8.0&#39;</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key_deserializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_deserializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fetch_max_wait_ms</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">fetch_max_bytes</span><span class="o">=</span><span class="mi">52428800</span><span class="p">,</span> <span class="n">fetch_min_bytes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_partition_fetch_bytes</span><span class="o">=</span><span class="mi">1048576</span><span class="p">,</span> <span class="n">request_timeout_ms</span><span class="o">=</span><span class="mi">40000</span><span class="p">,</span> <span class="n">retry_backoff_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">auto_offset_reset</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">,</span> <span class="n">enable_auto_commit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">auto_commit_interval_ms</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">check_crcs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metadata_max_age_ms</span><span class="o">=</span><span class="mi">300000</span><span class="p">,</span> <span class="n">partition_assignment_strategy</span><span class="o">=</span><span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">kafka</span><span class="o">.</span><span class="n">coordinator</span><span class="o">.</span><span class="n">assignors</span><span class="o">.</span><span class="n">roundrobin</span><span class="o">.</span><span class="n">RoundRobinPartitionAssignor</span><span class="s1">&#39;&gt;,), max_poll_interval_ms=300000, rebalance_timeout_ms=None, session_timeout_ms=10000, heartbeat_interval_ms=3000, consumer_timeout_ms=200, max_poll_records=None, ssl_context=None, security_protocol=&#39;</span><span class="n">PLAINTEXT</span><span class="s1">&#39;, api_version=&#39;</span><span class="n">auto</span><span class="s1">&#39;, exclude_internal_topics=True, connections_max_idle_ms=540000, isolation_level=&#39;</span><span class="n">read_uncommitted</span><span class="s1">&#39;, sasl_mechanism=&#39;</span><span class="n">PLAIN</span><span class="s1">&#39;, sasl_plain_password=None, sasl_plain_username=None, sasl_kerberos_service_name=&#39;</span><span class="n">kafka</span><span class="s1">&#39;, sasl_kerberos_domain_name=None, sasl_oauth_token_provider=None, acks=&lt;object object at 0x7ff4e36ab2c0&gt;, key_serializer=None, value_serializer=None, compression_type=None, max_batch_size=16384, partitioner=&lt;kafka.partitioner.default.DefaultPartitioner object at 0x7ff4e35398e0&gt;, max_request_size=1048576, linger_ms=0, send_backoff_ms=100, enable_idempotence=False, transactional_id=None, transaction_timeout_ms=60000)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#fast_kafka_api.application.FastKafkaAPI.__init__" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Combined REST and Kafka service</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>fast_api_app</code></td>
+        <td><code>FastAPI</code></td>
+        <td><p>the FastAPI app, if None, one will be created</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>asyncapi_route</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>the route to where to mount the documentation. If <strong>None</strong>, the docs will not be mounted.</p></td>
+        <td><code>&#39;/asyncapi&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>title</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>optional title for the documentation. If None, the title of passed fast_api_app will be used</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>description</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>optional description for the documentation. If None, the description of passed fast_api_app will be used</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>version</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>optional version for the documentation. If None, the version of passed fast_api_app will be used</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>contact</code></td>
+        <td><code>Optional[Dict[str, str]]</code></td>
+        <td><p>optional contact for the documentation. If None, the contact of passed fast_api_app will be used</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>kafka_brokers</code></td>
+        <td><code>Optional[Dict[str, Any]]</code></td>
+        <td><p>dictionary describing kafka brokers used for generating documentation</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>root_path</code></td>
+        <td><code>Union[pathlib.Path, str]</code></td>
+        <td><p>path to where documentation will be created</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>fast_kafka_api/application.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@delegates</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+    <span class="n">_get_func_with_combined_sig</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">AIOKafkaConsumer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">fast_api_app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">asyncapi_route</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">contact</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">kafka_brokers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">root_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combined REST and Kafka service</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        fast_api_app: the FastAPI app, if None, one will be created</span>
+<span class="sd">        asyncapi_route: the route to where to mount the documentation. If **None**, the docs will not be mounted.</span>
+<span class="sd">        title: optional title for the documentation. If None, the title of passed fast_api_app will be used</span>
+<span class="sd">        description: optional description for the documentation. If None, the description of passed fast_api_app will be used</span>
+<span class="sd">        version: optional version for the documentation. If None, the version of passed fast_api_app will be used</span>
+<span class="sd">        contact: optional contact for the documentation. If None, the contact of passed fast_api_app will be used</span>
+<span class="sd">        kafka_brokers: dictionary describing kafka brokers used for generating documentation</span>
+<span class="sd">        root_path: path to where documentation will be created</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_fast_api_app</span> <span class="o">=</span> <span class="n">fast_api_app</span>
+
+    <span class="c1"># this is neede for documentation generation</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">title</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="n">description</span> <span class="k">if</span> <span class="n">description</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">description</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">version</span> <span class="k">if</span> <span class="n">version</span> <span class="k">else</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">version</span>
+    <span class="k">if</span> <span class="n">contact</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="o">**</span><span class="n">contact</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">(</span><span class="o">**</span><span class="n">fast_api_app</span><span class="o">.</span><span class="n">contact</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span> <span class="o">=</span> <span class="n">_get_contact_info</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_service_info</span> <span class="o">=</span> <span class="n">KafkaServiceInfo</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">,</span>
+        <span class="n">contact</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_contact_info</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_brokers</span> <span class="o">=</span> <span class="n">_get_kafka_brokers</span><span class="p">(</span><span class="n">kafka_brokers</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_root_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">root_path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">)</span>
+
+    <span class="c1"># this is used as default parameters for creating AIOProducer and AIOConsumer objects</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_config</span> <span class="o">=</span> <span class="n">_get_kafka_config</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ConsumeCallable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_producers_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span>  <span class="c1"># type: ignore</span>
+        <span class="n">Union</span><span class="p">[</span><span class="n">AIOKafkaProducer</span><span class="p">,</span> <span class="n">AIOKafkaProducerManager</span><span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>  <span class="c1"># type: ignore</span>
+        <span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ProduceCallable</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># background tasks</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bg_task_group_generator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">TaskGroup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bg_tasks_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">TaskGroup</span><span class="p">]</span>
+
+    <span class="c1"># todo: use this for errrors</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_on_error_topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_path</span> <span class="o">/</span> <span class="s2">&quot;asyncapi&quot;</span>
+    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;spec&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span>
+        <span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span>
+        <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asyncapi&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_is_shutting_down</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_consumer_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_kafka_producer_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">redirect_root_to_asyncapi</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;/asyncapi&quot;</span><span class="p">)</span>
+
+    <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/asyncapi&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">redirect_asyncapi_docs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;/asyncapi/index.html&quot;</span><span class="p">)</span>
+
+    <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/asyncapi.yml&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">download_asyncapi_yml</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">FileResponse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_asyncapi_path</span> <span class="o">/</span> <span class="s2">&quot;spec&quot;</span> <span class="o">/</span> <span class="s2">&quot;asyncapi.yml&quot;</span><span class="p">)</span>
+
+    <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_startup</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_startup</span><span class="p">()</span>
+
+    <span class="nd">@self</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;shutdown&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_shutdown</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_shutdown</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="fast_kafka_api.application.FastKafkaAPI.consumes" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">consumes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;on_&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#fast_kafka_api.application.FastKafkaAPI.consumes" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator registering the callback called when a message is received in a topic.</p>
+<p>This function decorator is also responsible for registering topics for AsyncAPI specificiation and documentation.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>topic</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Kafka topic that the consumer will subscribe to and execute the decorated function when it receives a message from the topic, default: None
+If the topic is not specified, topic name will be inferred from the decorated function name by stripping the defined prefix</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>prefix</code></td>
+        <td><code>str</code></td>
+        <td><p>Prefix stripped from the decorated function to define a topic name if the topic argument is not passed, default: "on_"
+If the decorated function name is not prefixed with the defined prefix and topic argument is not passed, then this method will throw ValueError</p></td>
+        <td><code>&#39;on_&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code>Dict[str, Any]</code></td>
+        <td><p>Keyword arguments that will be passed to AIOKafkaConsumer, used to configure the consumer</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Callable[[Callable[[pydantic.main.BaseModel], Optional[Awaitable[NoneType]]]], Callable[[pydantic.main.BaseModel], Optional[Awaitable[NoneType]]]]</code></td>
+      <td><p>A function returning the same function</p></td>
+    </tr>
+  </tbody>
+</table>      <div class="admonition throws">
+<p class="admonition-title">Throws</p>
+<p>ValueError</p>
+</div>
+
+        <details class="quote">
+          <summary>Source code in <code>fast_kafka_api/application.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@patch</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">consumes</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">FastKafkaAPI</span><span class="p">,</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;on_&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">ConsumeCallable</span><span class="p">],</span> <span class="n">ConsumeCallable</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator registering the callback called when a message is received in a topic.</span>
+
+<span class="sd">    This function decorator is also responsible for registering topics for AsyncAPI specificiation and documentation.</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        topic: Kafka topic that the consumer will subscribe to and execute the decorated function when it receives a message from the topic, default: None</span>
+<span class="sd">            If the topic is not specified, topic name will be inferred from the decorated function name by stripping the defined prefix</span>
+<span class="sd">        prefix: Prefix stripped from the decorated function to define a topic name if the topic argument is not passed, default: &quot;on_&quot;</span>
+<span class="sd">            If the decorated function name is not prefixed with the defined prefix and topic argument is not passed, then this method will throw ValueError</span>
+<span class="sd">        **kwargs: Keyword arguments that will be passed to AIOKafkaConsumer, used to configure the consumer</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A function returning the same function</span>
+
+<span class="sd">    Throws:</span>
+<span class="sd">        ValueError</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span>
+        <span class="n">on_topic</span><span class="p">:</span> <span class="n">ConsumeCallable</span><span class="p">,</span>
+        <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">topic</span><span class="p">,</span>
+        <span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConsumeCallable</span><span class="p">:</span>
+        <span class="n">topic_resolved</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_get_topic_name</span><span class="p">(</span><span class="n">topic_callable</span><span class="o">=</span><span class="n">on_topic</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">topic</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">[</span><span class="n">topic_resolved</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">on_topic</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">on_topic</span>
+
+    <span class="k">return</span> <span class="n">_decorator</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="fast_kafka_api.application.FastKafkaAPI.produces" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">produces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;to_&#39;</span><span class="p">,</span> <span class="n">producer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#fast_kafka_api.application.FastKafkaAPI.produces" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator registering the callback called when delivery report for a produced message is received</p>
+<p>This function decorator is also responsible for registering topics for AsyncAPI specificiation and documentation.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>topic</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Kafka topic that the producer will send returned values from the decorated function to, default: None
+If the topic is not specified, topic name will be inferred from the decorated function name by stripping the defined prefix</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>prefix</code></td>
+        <td><code>str</code></td>
+        <td><p>Prefix stripped from the decorated function to define a topic name if the topic argument is not passed, default: "to_"
+If the decorated function name is not prefixed with the defined prefix and topic argument is not passed, then this method will throw ValueError</p></td>
+        <td><code>&#39;to_&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>producer</code></td>
+        <td><code>AIOKafkaProducer</code></td>
+        <td></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code>Dict[str, Any]</code></td>
+        <td><p>Keyword arguments that will be passed to AIOKafkaProducer, used to configure the producer</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Callable[[Callable[..., Union[Awaitable[pydantic.main.BaseModel], pydantic.main.BaseModel]]], Callable[..., Union[Awaitable[pydantic.main.BaseModel], pydantic.main.BaseModel]]]</code></td>
+      <td><p>A function returning the same function</p></td>
+    </tr>
+  </tbody>
+</table>      <div class="admonition throws">
+<p class="admonition-title">Throws</p>
+<p>ValueError</p>
+</div>
+
+        <details class="quote">
+          <summary>Source code in <code>fast_kafka_api/application.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@patch</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">produces</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">FastKafkaAPI</span><span class="p">,</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;to_&quot;</span><span class="p">,</span>
+    <span class="n">producer</span><span class="p">:</span> <span class="n">AIOKafkaProducer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">ProduceCallable</span><span class="p">],</span> <span class="n">ProduceCallable</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator registering the callback called when delivery report for a produced message is received</span>
+
+<span class="sd">    This function decorator is also responsible for registering topics for AsyncAPI specificiation and documentation.</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        topic: Kafka topic that the producer will send returned values from the decorated function to, default: None</span>
+<span class="sd">            If the topic is not specified, topic name will be inferred from the decorated function name by stripping the defined prefix</span>
+<span class="sd">        prefix: Prefix stripped from the decorated function to define a topic name if the topic argument is not passed, default: &quot;to_&quot;</span>
+<span class="sd">            If the decorated function name is not prefixed with the defined prefix and topic argument is not passed, then this method will throw ValueError</span>
+<span class="sd">        producer:</span>
+<span class="sd">        **kwargs: Keyword arguments that will be passed to AIOKafkaProducer, used to configure the producer</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A function returning the same function</span>
+
+<span class="sd">    Throws:</span>
+<span class="sd">        ValueError</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span>
+        <span class="n">on_topic</span><span class="p">:</span> <span class="n">ProduceCallable</span><span class="p">,</span>
+        <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">topic</span><span class="p">,</span>
+        <span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProduceCallable</span><span class="p">:</span>
+        <span class="n">topic_resolved</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_get_topic_name</span><span class="p">(</span><span class="n">topic_callable</span><span class="o">=</span><span class="n">on_topic</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">topic</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="n">topic_resolved</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">on_topic</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">produce_decorator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_topic</span><span class="p">,</span> <span class="n">topic_resolved</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_decorator</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="fast_kafka_api.application.FastKafkaAPI.run_in_background" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">run_in_background</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#fast_kafka_api.application.FastKafkaAPI.run_in_background" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to schedule a task to be run in the background.</p>
+<p>This decorator is used to schedule a task to be run in the background when the app's <code>_on_startup</code> event is triggered.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Callable[None, None]</code></td>
+      <td><p>A decorator function that takes a background task as an input and stores it to be run in the backround.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>fast_kafka_api/application.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@patch</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">run_in_background</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">FastKafkaAPI</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span>
+    <span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to schedule a task to be run in the background.</span>
+
+<span class="sd">    This decorator is used to schedule a task to be run in the background when the app&#39;s `_on_startup` event is triggered.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[None, None]: A decorator function that takes a background task as an input and stores it to be run in the backround.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span>
+        <span class="n">bg_task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Store the background task.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            bg_task (Callable[[], None]): The background task to be run asynchronously.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Callable[[], None]: Original background task.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bg_task</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bg_task</span>
+
+    <span class="k">return</span> <span class="n">_decorator</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 onwards, airt
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    and
+    <a href="https://nbdev-mkdocs.airt.ai/" target="_blank" rel="noopener">
+      Material for nbdev
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../overrides/js/extra.js"></script>
+      
+        <script src="../../../overrides/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

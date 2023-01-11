@@ -1,0 +1,1012 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Extension of FastAPI with Kafka event handlers">
+      
+      
+        <meta name="author" content="airt">
+      
+      
+        <link rel="canonical" href="https://airtai.github.io/fast-kafka-api/099_Test_Service/">
+      
+      
+      
+      <link rel="icon" href="../overrides/images/compass-outline.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>099 Test Service - FastKafkaAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../overrides/css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1ZWQNQNSZ8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1ZWQNQNSZ8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1ZWQNQNSZ8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FastKafkaAPI - 099 Test Service" />
+  <meta property="og:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta property="og:url" content="https://airtai.github.io/fast-kafka-api/099_Test_Service/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FastKafkaAPI - 099 Test Service" />
+  <meta name="twitter:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta name="twitter:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FastKafkaAPI" class="md-header__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FastKafkaAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              099 Test Service
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FastKafkaAPI" class="md-nav__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    FastKafkaAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        FastKafkaAPI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_01_Intro/" class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_02_First_Steps/" class="md-nav__link">
+        First Steps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/application/" class="md-nav__link">
+        fast_kafka_api.application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/testing/" class="md-nav__link">
+        fast_kafka_api.testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_cli_docs/fast-kafka-api/" class="md-nav__link">
+        fast-kafka-api
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">confluent_kafka</span> <span class="kn">import</span> <span class="n">Consumer</span><span class="p">,</span> <span class="n">Producer</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.docs</span> <span class="kn">import</span> <span class="n">get_redoc_html</span><span class="p">,</span> <span class="n">get_swagger_ui_html</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">FileResponse</span><span class="p">,</span> <span class="n">RedirectResponse</span>
+<span class="kn">from</span> <span class="nn">fastapi.security</span> <span class="kn">import</span> <span class="n">OAuth2PasswordBearer</span><span class="p">,</span> <span class="n">OAuth2PasswordRequestForm</span>
+<span class="kn">from</span> <span class="nn">fastapi.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">EmailStr</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">HttpUrl</span><span class="p">,</span> <span class="n">NonNegativeInt</span><span class="p">,</span> <span class="n">validator</span>
+
+<span class="kn">from</span> <span class="nn">fast_kafka_api._components.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">fast_kafka_api.application</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ConsumeCallable</span><span class="p">,</span>
+    <span class="n">FastKafkaAPI</span><span class="p">,</span>
+    <span class="n">KafkaMessage</span><span class="p">,</span>
+    <span class="n">ProduceCallable</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+<span class="kn">import</span> <span class="nn">uvicorn</span>
+<span class="kn">from</span> <span class="nn">fastapi.testclient</span> <span class="kn">import</span> <span class="n">TestClient</span>
+<span class="kn">from</span> <span class="nn">starlette.datastructures</span> <span class="kn">import</span> <span class="n">Headers</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;check&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] __main__: check
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ModelType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">churn</span> <span class="o">=</span> <span class="s2">&quot;churn&quot;</span>
+    <span class="n">propensity_to_buy</span> <span class="o">=</span> <span class="s2">&quot;propensity_to_buy&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">ModelTrainingRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ModelName</span><span class="p">:</span> <span class="n">ModelType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;churn&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span><span class="p">)</span>
+    <span class="n">total_no_of_records</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;total number of records (rows) to be ingested&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">EventData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A sequence of events for a fixed account_id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Application</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;DriverApp&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the application in case there is more than one for the AccountId&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">DefinitionId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;appLaunch&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;name of the event&quot;</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">OccurredTime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;2021-03-28T00:34:08&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;local time of the event&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">OccurredTimeTicks</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">1616891648496</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;local time of the event as the number of ticks&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">PersonId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">12345678</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of a person&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">RealtimeData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">event_data</span><span class="p">:</span> <span class="n">EventData</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">AccountId</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span>
+            <span class="n">Application</span><span class="o">=</span><span class="s2">&quot;DriverApp&quot;</span><span class="p">,</span>
+            <span class="n">DefinitionId</span><span class="o">=</span><span class="s2">&quot;appLaunch&quot;</span><span class="p">,</span>
+            <span class="n">OccurredTime</span><span class="o">=</span><span class="s2">&quot;2021-03-28T00:34:08&quot;</span><span class="p">,</span>
+            <span class="n">OccurredTimeTicks</span><span class="o">=</span><span class="mi">1616891648496</span><span class="p">,</span>
+            <span class="n">PersonId</span><span class="o">=</span><span class="mi">12345678</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;realtime event data&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">make_prediction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;trigger prediction message in prediction topic&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TrainingDataStatus</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">no_of_records</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">12_345</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of records (rows) ingested&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">total_no_of_records</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;total number of records (rows) to be ingested&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TrainingModelStatus</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">current_step</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of records (rows) ingested&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">current_step_percentage</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mf">0.21</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;the percentage of the current step completed&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">total_no_of_steps</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;total number of steps for training the model&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ModelMetrics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The standard metrics for classification models.</span>
+
+<span class="sd">    The most important metrics is AUC for unbalanced classes such as churn. Metrics such as</span>
+<span class="sd">    accuracy are not very useful since they are easily maximized by outputting the most common</span>
+<span class="sd">    class all the time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Application</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;DriverApp&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the application in case there is more than one for the AccountId&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;2021-03-28T00:34:08&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;UTC time when the model was trained&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model_type</span><span class="p">:</span> <span class="n">ModelType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;churn&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the model used (churn, propensity to buy)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">auc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mf">0.91</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Area under ROC curve&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="p">)</span>
+    <span class="n">f1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mf">0.89</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;F-1 score&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">precission</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mf">0.84</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;precission&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="p">)</span>
+    <span class="n">recall</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mf">0.82</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;recall&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">accuracy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mf">0.82</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Prediction</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">AccountId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">202020</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of an account&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Application</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;DriverApp&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the application in case there is more than one for the AccountId&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">PersonId</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="mi">12345678</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of a person&quot;</span>
+    <span class="p">)</span>
+    <span class="n">prediction_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;2021-03-28T00:34:08&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;UTC time of prediction&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model_type</span><span class="p">:</span> <span class="n">ModelType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="s2">&quot;churn&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the model used (churn, propensity to buy)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="mf">0.4321</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prediction score (e.g. the probability of churn in the next 28 days)&quot;</span><span class="p">,</span>
+        <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">_total_no_of_records</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">_no_of_records_received</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">create_ws_server</span><span class="p">(</span><span class="n">assets_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./assets&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">FastAPI</span><span class="p">,</span> <span class="n">FastKafkaAPI</span><span class="p">]:</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Example for FastKafkaAPI&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;A simple example on how to use FastKafkaAPI&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span>
+    <span class="n">openapi_url</span> <span class="o">=</span> <span class="s2">&quot;/openapi.json&quot;</span>
+    <span class="n">favicon_url</span> <span class="o">=</span> <span class="s2">&quot;/assets/images/favicon.ico&quot;</span>
+
+    <span class="n">contact</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;airt.ai&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://airt.ai&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;info@airt.ai&quot;</span><span class="p">)</span>
+
+    <span class="n">kafka_brokers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;localhost&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;local development kafka&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9092</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;staging&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka.staging.acme.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;staging kafka&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9092</span><span class="p">,</span>
+            <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka-secure&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;security&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;plain&quot;</span><span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;production&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka.infobip.acme.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;production kafka&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9092</span><span class="p">,</span>
+            <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka-secure&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;security&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;plain&quot;</span><span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">kafka_server_url</span> <span class="o">=</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_HOSTNAME&quot;</span><span class="p">]</span>
+    <span class="n">kafka_server_port</span> <span class="o">=</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_PORT&quot;</span><span class="p">]</span>
+    <span class="n">kafka_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;bootstrap_servers&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kafka_server_url</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">kafka_server_port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;group_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kafka_server_url</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">kafka_server_port</span><span class="si">}</span><span class="s2">_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;auto_offset_reset&quot;</span><span class="p">:</span> <span class="s2">&quot;earliest&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="s2">&quot;KAFKA_API_KEY&quot;</span> <span class="ow">in</span> <span class="n">environ</span><span class="p">:</span>
+        <span class="n">kafka_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="o">**</span><span class="n">kafka_config</span><span class="p">,</span>
+            <span class="o">**</span><span class="p">{</span>
+                <span class="s2">&quot;security_protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;SASL_SSL&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sasl_mechanisms&quot;</span><span class="p">:</span> <span class="s2">&quot;PLAIN&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sasl_username&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_API_KEY&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;sasl_password&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_API_SECRET&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+
+    <span class="n">rest_app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+        <span class="n">contact</span><span class="o">=</span><span class="n">contact</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span>
+        <span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">kafka_app</span> <span class="o">=</span> <span class="n">FastKafkaAPI</span><span class="p">(</span>
+        <span class="n">fast_api_app</span><span class="o">=</span><span class="n">rest_app</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+        <span class="n">contact</span><span class="o">=</span><span class="n">contact</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span>
+        <span class="n">kafka_brokers</span><span class="o">=</span><span class="n">kafka_brokers</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kafka_config</span>
+    <span class="p">)</span>
+
+    <span class="nd">@rest_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">overridden_swagger</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+            <span class="n">openapi_url</span><span class="o">=</span><span class="n">openapi_url</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+            <span class="n">swagger_favicon_url</span><span class="o">=</span><span class="n">favicon_url</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@rest_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">overridden_redoc</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+            <span class="n">openapi_url</span><span class="o">=</span><span class="n">openapi_url</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+            <span class="n">redoc_favicon_url</span><span class="o">=</span><span class="n">favicon_url</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@rest_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/from_kafka_start&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">from_kafka_start</span><span class="p">(</span><span class="n">training_request</span><span class="p">:</span> <span class="n">ModelTrainingRequest</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">_total_no_of_records</span>
+        <span class="k">global</span> <span class="n">_no_of_records_received</span>
+
+        <span class="n">_total_no_of_records</span> <span class="o">=</span> <span class="n">training_request</span><span class="o">.</span><span class="n">total_no_of_records</span>
+        <span class="n">_no_of_records_received</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@rest_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/from_kafka_end&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">from_kafka_end</span><span class="p">():</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">consumes</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_training_data</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">EventData</span><span class="p">):</span>
+        <span class="c1"># ToDo: this is not showing up in logs</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">_total_no_of_records</span>
+        <span class="k">global</span> <span class="n">_no_of_records_received</span>
+        <span class="n">_no_of_records_received</span> <span class="o">=</span> <span class="n">_no_of_records_received</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">_no_of_records_received</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">training_data_status</span> <span class="o">=</span> <span class="n">TrainingDataStatus</span><span class="p">(</span>
+                <span class="n">AccountId</span><span class="o">=</span><span class="n">EventData</span><span class="o">.</span><span class="n">AccountId</span><span class="p">,</span>
+                <span class="n">no_of_records</span><span class="o">=</span><span class="n">_no_of_records_received</span><span class="p">,</span>
+                <span class="n">total_no_of_records</span><span class="o">=</span><span class="n">_total_no_of_records</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="s2">&quot;training_data_status&quot;</span><span class="p">,</span> <span class="n">training_data_status</span><span class="p">)</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">consumes</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_realitime_data</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">RealtimeData</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">to_training_data_status</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">TrainingDataStatus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingDataStatus</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_training_data_status(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">, kafka_msg=</span><span class="si">{</span><span class="n">kafka_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">to_training_model_status</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingModelStatus</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_training_model_status(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">, kafka_msg=</span><span class="si">{</span><span class="n">kafka_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">TrainingModelStatus</span><span class="p">()</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">to_model_metrics</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">ModelMetrics</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelMetrics</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_training_model_status(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">, kafka_msg=</span><span class="si">{</span><span class="n">kafka_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="nd">@kafka_app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">to_prediction</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">Prediction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Prediction</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_realtime_data_status(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">,, kafka_msg=</span><span class="si">{</span><span class="n">kafka_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="k">return</span> <span class="n">rest_app</span><span class="p">,</span> <span class="n">kafka_app</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_fastapi_app</span><span class="p">(</span><span class="n">assets_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../assets&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">FastKafkaAPI</span><span class="p">:</span>
+    <span class="n">assets_path</span> <span class="o">=</span> <span class="n">assets_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="n">rest_app</span><span class="p">,</span> <span class="n">kafka_app</span> <span class="o">=</span> <span class="n">create_ws_server</span><span class="p">(</span><span class="n">assets_path</span><span class="o">=</span><span class="n">assets_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rest_app</span><span class="p">,</span> <span class="n">kafka_app</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path(&quot;/tmp/099_Test_Service&quot;).mkdir(exist_ok=True)</span>
+<span class="c1"># os.chdir(&quot;/tmp/099_Test_Service&quot;)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">assets_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../assets&quot;</span><span class="p">)</span>
+<span class="n">rest_app</span><span class="p">,</span> <span class="n">kafka_app</span> <span class="o">=</span> <span class="n">create_fastapi_app</span><span class="p">(</span><span class="n">assets_path</span><span class="o">=</span><span class="n">assets_path</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">start_fastapi_server</span><span class="p">(</span>
+    <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6006</span><span class="p">,</span>
+    <span class="n">rest_app</span><span class="o">=</span><span class="n">rest_app</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">uvicorn</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">rest_app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6006</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">uvicorn</span><span class="o">.</span><span class="n">Server</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># await start_fastapi_server()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>INFO:     Started server process [21039]
+INFO:     Waiting for application startup.
+
+[INFO] fast_kafka_api._components.asyncapi: New async specifications generated at: &#39;asyncapi/spec/asyncapi.yml&#39;
+[INFO] fast_kafka_api._components.asyncapi: Async docs generated at &#39;asyncapi/docs&#39;
+[INFO] fast_kafka_api._components.asyncapi: Output of &#39;$ npx -y -p @asyncapi/generator ag asyncapi/spec/asyncapi.yml @asyncapi/html-template -o asyncapi/docs --force-write&#39;
+
+Done! ✨
+Check out your shiny new generated files at /work/fast-kafka-api/nbs/asyncapi/docs.
+
+
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting..
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting..
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created.
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6006 (Press CTRL+C to quit)
+
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;realitime_data&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;realitime_data&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;training_data&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;training_data&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[WARNING] aiokafka.cluster: Topic realitime_data is not available during auto-create initialization
+[INFO] aiokafka.consumer.group_coordinator: Metadata for topic has changed from {} to {&#39;realitime_data&#39;: 0}. 
+[WARNING] aiokafka.cluster: Topic training_data is not available during auto-create initialization
+[INFO] aiokafka.consumer.group_coordinator: Metadata for topic has changed from {} to {&#39;training_data&#39;: 0}.
+
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+
+INFO:     Application shutdown complete.
+INFO:     Finished server process [21039]
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 onwards, airt
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    and
+    <a href="https://nbdev-mkdocs.airt.ai/" target="_blank" rel="noopener">
+      Material for nbdev
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../overrides/js/extra.js"></script>
+      
+        <script src="../overrides/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

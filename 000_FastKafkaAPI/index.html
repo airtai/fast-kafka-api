@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Extension of FastAPI with Kafka event handlers">
+      
+      
+        <meta name="author" content="airt">
+      
+      
+        <link rel="canonical" href="https://airtai.github.io/fast-kafka-api/000_FastKafkaAPI/">
+      
+      
+      
+      <link rel="icon" href="../overrides/images/compass-outline.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>000 FastKafkaAPI - FastKafkaAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../overrides/css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1ZWQNQNSZ8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1ZWQNQNSZ8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1ZWQNQNSZ8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FastKafkaAPI - 000 FastKafkaAPI" />
+  <meta property="og:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta property="og:url" content="https://airtai.github.io/fast-kafka-api/000_FastKafkaAPI/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FastKafkaAPI - 000 FastKafkaAPI" />
+  <meta name="twitter:description" content="Extension of FastAPI with Kafka event handlers" />
+  <meta name="twitter:image" content="https://opengraph.githubassets.com/1671805243.560235/airtai/fast-kafka-api" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#constructor-utilities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FastKafkaAPI" class="md-header__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FastKafkaAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              000 FastKafkaAPI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FastKafkaAPI" class="md-nav__button md-logo" aria-label="FastKafkaAPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8L7 17m5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8Z"/></svg>
+
+    </a>
+    FastKafkaAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/airtai/fast-kafka-api" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fast-kafka-api
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        FastKafkaAPI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_01_Intro/" class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/Guide_02_First_Steps/" class="md-nav__link">
+        First Steps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/application/" class="md-nav__link">
+        fast_kafka_api.application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_api_docs/fast_kafka_api/testing/" class="md-nav__link">
+        fast_kafka_api.testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast_kafka_api_cli_docs/fast-kafka-api/" class="md-nav__link">
+        fast-kafka-api
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor-utilities" class="md-nav__link">
+    Constructor utilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastkafkaapi" class="md-nav__link">
+    FastKafkaAPI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastkafkaapiconsumes" class="md-nav__link">
+    FastKafkaAPI.consumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#produce_decorator" class="md-nav__link">
+    produce_decorator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastkafkaapiproduces" class="md-nav__link">
+    FastKafkaAPI.produces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastkafkaapirun_in_background" class="md-nav__link">
+    FastKafkaAPI.run_in_background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter_using_signature" class="md-nav__link">
+    filter_using_signature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastkafkaapigenerate_async_spec" class="md-nav__link">
+    FastKafkaAPI.generate_async_spec
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>000 FastKafkaAPI</h1>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+
+<div class="highlight"><pre><span></span><code><span class="n">supress_timestamps</span><span class="p">()</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] __main__: ok
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">uvicorn</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">fastapi.testclient</span> <span class="kn">import</span> <span class="n">TestClient</span>
+<span class="kn">from</span> <span class="nn">rich.pretty</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">starlette.datastructures</span> <span class="kn">import</span> <span class="n">Headers</span>
+
+<span class="kn">from</span> <span class="nn">fast_kafka_api.testing</span> <span class="kn">import</span> <span class="n">mock_AIOKafkaProducer_send</span><span class="p">,</span> <span class="n">true_after</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># allows async calls in notebooks</span>
+
+<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">kafka_server_url</span> <span class="o">=</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_HOSTNAME&quot;</span><span class="p">]</span>
+<span class="n">kafka_server_port</span> <span class="o">=</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KAFKA_PORT&quot;</span><span class="p">]</span>
+
+<span class="n">kafka_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;bootstrap_servers&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kafka_server_url</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">kafka_server_port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kafka_server_url</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">kafka_server_port</span><span class="si">}</span><span class="s2">_group&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;auto_offset_reset&quot;</span><span class="p">:</span> <span class="s2">&quot;earliest&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="constructor-utilities">Constructor utilities<a class="headerlink" href="#constructor-utilities" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">_get_fast_api_app</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>_debug=False
+title=FastAPI
+description=
+version=0.1.0
+terms_of_service=None
+contact=None
+license_info=None
+openapi_url=/openapi.json
+openapi_tags=None
+root_path_in_servers=True
+docs_url=/docs
+redoc_url=/redoc
+swagger_ui_oauth2_redirect_url=/docs/oauth2-redirect
+swagger_ui_init_oauth=None
+swagger_ui_parameters=None
+servers=[]
+extra={}
+openapi_version=3.0.2
+openapi_schema=None
+root_path=
+state=&lt;starlette.datastructures.State object&gt;
+dependency_overrides={}
+router=&lt;fastapi.routing.APIRouter object&gt;
+exception_handlers={&lt;class &#39;starlette.exceptions.HTTPException&#39;&gt;: &lt;function http_exception_handler&gt;, &lt;class &#39;fastapi.exceptions.RequestValidationError&#39;&gt;: &lt;function request_validation_exception_handler&gt;}
+user_middleware=[]
+middleware_stack=&lt;starlette.middleware.errors.ServerErrorMiddleware object&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="n">_get_func_with_combined_sig</span><span class="p">([</span><span class="n">AIOKafkaConsumer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">])</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">48</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="n">_get_func_with_combined_sig</span><span class="p">([</span><span class="n">AIOKafkaConsumer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">AIOKafkaProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">49</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">_get_kafka_config</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span>
+    <span class="s2">&quot;bootstrap_servers&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost:9092&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;auto_offset_reset&quot;</span><span class="p">:</span> <span class="s2">&quot;earliest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;max_poll_records&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">assert</span> <span class="n">_get_kafka_config</span><span class="p">(</span><span class="n">max_poll_records</span><span class="o">=</span><span class="mi">1_000</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
+    <span class="s2">&quot;bootstrap_servers&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost:9092&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;auto_offset_reset&quot;</span><span class="p">:</span> <span class="s2">&quot;earliest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;max_poll_records&quot;</span><span class="p">:</span> <span class="mi">1_000</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">_get_kafka_config</span><span class="p">(</span><span class="n">random_key</span><span class="o">=</span><span class="mi">1_000</span><span class="p">,</span> <span class="n">whatever</span><span class="o">=</span><span class="s2">&quot;whocares&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">args</span> <span class="o">==</span> <span class="p">(</span><span class="s2">&quot;Unallowed key arguments passed: &#39;random_key&#39;, &#39;whatever&#39;&quot;</span><span class="p">,)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="p">(</span>
+    <span class="n">_get_kafka_brokers</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="o">==</span> <span class="s1">&#39;{&quot;brokers&quot;: {&quot;localhost&quot;: {&quot;url&quot;: &quot;https://localhost&quot;, &quot;description&quot;: &quot;Local (dev) Kafka broker&quot;, &quot;protocol&quot;: &quot;kafka&quot;, &quot;variables&quot;: {&quot;port&quot;: {&quot;default&quot;: &quot;9092&quot;}}}}}&#39;</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">_get_kafka_brokers</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">localhost</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="o">==</span> <span class="s1">&#39;{&quot;brokers&quot;: {&quot;localhost&quot;: {&quot;url&quot;: &quot;localhost&quot;, &quot;description&quot;: &quot;Kafka broker&quot;, &quot;protocol&quot;: &quot;kafka&quot;, &quot;variables&quot;: {&quot;port&quot;: {&quot;default&quot;: &quot;9092&quot;}}}}}&#39;</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">_get_kafka_brokers</span><span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">localhost</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">),</span> <span class="n">staging</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;staging.airt.ai&quot;</span><span class="p">))</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="o">==</span> <span class="s1">&#39;{&quot;brokers&quot;: {&quot;localhost&quot;: {&quot;url&quot;: &quot;localhost&quot;, &quot;description&quot;: &quot;Kafka broker&quot;, &quot;protocol&quot;: &quot;kafka&quot;, &quot;variables&quot;: {&quot;port&quot;: {&quot;default&quot;: &quot;9092&quot;}}}, &quot;staging&quot;: {&quot;url&quot;: &quot;staging.airt.ai&quot;, &quot;description&quot;: &quot;Kafka broker&quot;, &quot;protocol&quot;: &quot;kafka&quot;, &quot;variables&quot;: {&quot;port&quot;: {&quot;default&quot;: &quot;9092&quot;}}}}}&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_topic_name_1</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">_get_topic_name</span><span class="p">(</span><span class="n">on_topic_name_1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;topic_name_1&quot;</span>
+
+<span class="k">assert</span> <span class="n">_get_topic_name</span><span class="p">(</span><span class="n">on_topic_name_1</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;on_topic_&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;name_1&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">_get_contact_info</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ContactInfo(name=&#39;Author&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;)
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L175"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="fastkafkaapi">FastKafkaAPI<a class="headerlink" href="#fastkafkaapi" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> FastKafkaAPI (fast_api_app:fastapi.applications.FastAPI,
+               asyncapi_route:Optional[str]=&#39;/asyncapi&#39;,
+               title:Optional[str]=None, description:Optional[str]=None,
+               version:Optional[str]=None,
+               contact:Optional[Dict[str,str]]=None,
+               kafka_brokers:Optional[Dict[str,Any]]=None,
+               root_path:Union[pathlib.Path,str,NoneType]=None, loop=None,
+               bootstrap_servers=&#39;localhost&#39;, client_id=&#39;aiokafka-0.8.0&#39;,
+               group_id=None, key_deserializer=None,
+               value_deserializer=None, fetch_max_wait_ms=500,
+               fetch_max_bytes=52428800, fetch_min_bytes=1,
+               max_partition_fetch_bytes=1048576,
+               request_timeout_ms=40000, retry_backoff_ms=100,
+               auto_offset_reset=&#39;latest&#39;, enable_auto_commit=True,
+               auto_commit_interval_ms=5000, check_crcs=True,
+               metadata_max_age_ms=300000,
+               partition_assignment_strategy=(&lt;class &#39;kafka.coordinator.as
+               signors.roundrobin.RoundRobinPartitionAssignor&#39;&gt;,),
+               max_poll_interval_ms=300000, rebalance_timeout_ms=None,
+               session_timeout_ms=10000, heartbeat_interval_ms=3000,
+               consumer_timeout_ms=200, max_poll_records=None,
+               ssl_context=None, security_protocol=&#39;PLAINTEXT&#39;,
+               api_version=&#39;auto&#39;, exclude_internal_topics=True,
+               connections_max_idle_ms=540000,
+               isolation_level=&#39;read_uncommitted&#39;, sasl_mechanism=&#39;PLAIN&#39;,
+               sasl_plain_password=None, sasl_plain_username=None,
+               sasl_kerberos_service_name=&#39;kafka&#39;,
+               sasl_kerberos_domain_name=None,
+               sasl_oauth_token_provider=None, acks=&lt;object object at
+               0x7fa65c7e6ff0&gt;, key_serializer=None,
+               value_serializer=None, compression_type=None,
+               max_batch_size=16384,
+               partitioner=&lt;kafka.partitioner.default.DefaultPartitioner
+               object at 0x7fa65a8bd280&gt;, max_request_size=1048576,
+               linger_ms=0, send_backoff_ms=100, enable_idempotence=False,
+               transactional_id=None, transaction_timeout_ms=60000)
+</code></pre></div>
+</blockquote>
+<p>Combined REST and Kafka service</p>
+<p>Params: fast_api_app: the FastAPI app, if None, one will be created
+asyncapi_route: the route to where to mount the documentation. If
+<strong>None</strong>, the docs will not be mounted. title: optional title for the
+documentation. If None, the title of passed fast_api_app will be used
+description: optional description for the documentation. If None, the
+description of passed fast_api_app will be used version: optional
+version for the documentation. If None, the version of passed
+fast_api_app will be used contact: optional contact for the
+documentation. If None, the contact of passed fast_api_app will be used
+kafka_brokers: dictionary describing kafka brokers used for generating
+documentation root_path: path to where documentation will be created</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="n">kafka_app</span> <span class="o">=</span> <span class="n">FastKafkaAPI</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">kafka_app</span><span class="o">.</span><span class="vm">__dict__</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;_fast_api_app&#39;: &lt;fastapi.applications.FastAPI&gt;,
+ &#39;_title&#39;: &#39;FastAPI&#39;,
+ &#39;_description&#39;: &#39;&#39;,
+ &#39;_version&#39;: &#39;0.1.0&#39;,
+ &#39;_contact_info&#39;: ContactInfo(name=&#39;Author&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;),
+ &#39;_kafka_service_info&#39;: KafkaServiceInfo(title=&#39;FastAPI&#39;, version=&#39;0.1.0&#39;, description=&#39;&#39;, contact=ContactInfo(name=&#39;Author&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;)),
+ &#39;_kafka_brokers&#39;: KafkaBrokers(brokers={&#39;localhost&#39;: KafkaBroker(url=&#39;https://localhost&#39;, description=&#39;Local (dev) Kafka broker&#39;, port=&#39;9092&#39;, protocol=&#39;kafka&#39;, security=None)}),
+ &#39;_root_path&#39;: PosixPath(&#39;.&#39;),
+ &#39;_kafka_config&#39;: {&#39;bootstrap_servers&#39;: &#39;localhost:9092&#39;,
+  &#39;auto_offset_reset&#39;: &#39;earliest&#39;,
+  &#39;max_poll_records&#39;: 100},
+ &#39;_consumers_store&#39;: {},
+ &#39;_producers_list&#39;: [],
+ &#39;_producers_store&#39;: {},
+ &#39;_scheduled_bg_tasks&#39;: [],
+ &#39;_bg_task_group_generator&#39;: None,
+ &#39;_on_error_topic&#39;: None,
+ &#39;_asyncapi_path&#39;: PosixPath(&#39;asyncapi&#39;),
+ &#39;_is_shutting_down&#39;: False,
+ &#39;_kafka_consumer_tasks&#39;: [],
+ &#39;_kafka_producer_tasks&#39;: []}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">contact</span><span class="o">=</span><span class="s2">&quot;Davor&quot;</span><span class="p">)</span>
+<span class="n">kafka_app</span> <span class="o">=</span> <span class="n">FastKafkaAPI</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">kafka_app</span><span class="o">.</span><span class="vm">__dict__</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;_fast_api_app&#39;: &lt;fastapi.applications.FastAPI&gt;,
+ &#39;_title&#39;: &#39;FastAPI&#39;,
+ &#39;_description&#39;: &#39;&#39;,
+ &#39;_version&#39;: &#39;0.1.0&#39;,
+ &#39;_contact_info&#39;: ContactInfo(name=&#39;Davor&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;),
+ &#39;_kafka_service_info&#39;: KafkaServiceInfo(title=&#39;FastAPI&#39;, version=&#39;0.1.0&#39;, description=&#39;&#39;, contact=ContactInfo(name=&#39;Davor&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;)),
+ &#39;_kafka_brokers&#39;: KafkaBrokers(brokers={&#39;localhost&#39;: KafkaBroker(url=&#39;https://localhost&#39;, description=&#39;Local (dev) Kafka broker&#39;, port=&#39;9092&#39;, protocol=&#39;kafka&#39;, security=None)}),
+ &#39;_root_path&#39;: PosixPath(&#39;.&#39;),
+ &#39;_kafka_config&#39;: {&#39;bootstrap_servers&#39;: &#39;localhost:9092&#39;,
+  &#39;auto_offset_reset&#39;: &#39;earliest&#39;,
+  &#39;max_poll_records&#39;: 100},
+ &#39;_consumers_store&#39;: {},
+ &#39;_producers_list&#39;: [],
+ &#39;_producers_store&#39;: {},
+ &#39;_scheduled_bg_tasks&#39;: [],
+ &#39;_bg_task_group_generator&#39;: None,
+ &#39;_on_error_topic&#39;: None,
+ &#39;_asyncapi_path&#39;: PosixPath(&#39;asyncapi&#39;),
+ &#39;_is_shutting_down&#39;: False,
+ &#39;_kafka_consumer_tasks&#39;: [],
+ &#39;_kafka_producer_tasks&#39;: []}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_testing_app</span><span class="p">():</span>
+    <span class="n">root_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/000_FastKafkaAPI&quot;</span>
+    <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">root_path</span><span class="p">)</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+    <span class="n">kafka_app</span> <span class="o">=</span> <span class="n">FastKafkaAPI</span><span class="p">(</span>
+        <span class="n">app</span><span class="p">,</span>
+        <span class="n">kafka_brokers</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;local&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;kafka&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;development&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Local (dev) Kafka broker&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9092</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="n">root_path</span><span class="o">=</span><span class="n">root_path</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kafka_config</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">kafka_app</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+<span class="n">app</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;__main__.FastKafkaAPI&gt;
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L342"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="fastkafkaapiconsumes">FastKafkaAPI.consumes<a class="headerlink" href="#fastkafkaapiconsumes" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> FastKafkaAPI.consumes (topic:Optional[str]=None, prefix:str=&#39;on_&#39;,
+                        **kwargs:Dict[str,Any])
+</code></pre></div>
+</blockquote>
+<p>Decorator registering the callback called when a message is received in
+a topic.</p>
+<p>This function decorator is also responsible for registering topics for
+AsyncAPI specificiation and documentation.</p>
+<p>Params: topic: Kafka topic that the consumer will subscribe to and
+execute the decorated function when it receives a message from the
+topic, default: None If the topic is not specified, topic name will be
+inferred from the decorated function name by stripping the defined
+prefix prefix: Prefix stripped from the decorated function to define a
+topic name if the topic argument is not passed, default: “on_” If the
+decorated function name is not prefixed with the defined prefix and
+topic argument is not passed, then this method will throw ValueError
+**kwargs: Keyword arguments that will be passed to AIOKafkaConsumer,
+used to configure the consumer</p>
+<p>Returns: A function returning the same function</p>
+<p>Throws: ValueError</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+
+<span class="c1"># Basic check</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">on_my_topic_1</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">[</span><span class="s2">&quot;my_topic_1&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">on_my_topic_1</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span>
+
+<span class="c1"># Check topic setting</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;test_topic_2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_func_name</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">[</span><span class="s2">&quot;test_topic_2&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">some_func_name</span><span class="p">,</span>
+    <span class="p">{},</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span>
+
+<span class="c1"># Check prefix change</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;for_&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">for_test_topic_3</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">[</span><span class="s2">&quot;test_topic_3&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">for_test_topic_3</span><span class="p">,</span>
+    <span class="p">{},</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span>
+
+<span class="c1"># Check passing of kwargs</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;arg1&quot;</span><span class="p">:</span> <span class="s2">&quot;val1&quot;</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;test_topic&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">for_test_kwargs</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span><span class="p">[</span><span class="s2">&quot;test_topic&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">for_test_kwargs</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="p">,</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">_to_json_utf8</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: [2, 3]}&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">assert</span> <span class="n">_to_json_utf8</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Davor&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;{&quot;name&quot;: &quot;Davor&quot;, &quot;age&quot;: 12}&#39;</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L394"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="produce_decorator">produce_decorator<a class="headerlink" href="#produce_decorator" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> produce_decorator (func:Callable[...,Union[Awaitable[pydantic.main.BaseMo
+                    del],pydantic.main.BaseModel]], topic:str)
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">test_me</span><span class="p">(</span><span class="n">is_async</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">mock_AIOKafkaProducer_send</span><span class="p">()</span> <span class="k">as</span> <span class="n">send_mock</span><span class="p">:</span>
+        <span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;test_topic&quot;</span>
+
+        <span class="k">class</span> <span class="nc">MockMsg</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Micky Mouse&quot;</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">123</span>
+
+        <span class="k">if</span> <span class="n">is_async</span><span class="p">:</span>
+
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">mock_msg</span><span class="p">:</span> <span class="n">MockMsg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MockMsg</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">mock_msg</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">mock_msg</span><span class="p">:</span> <span class="n">MockMsg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MockMsg</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">mock_msg</span>
+
+        <span class="n">producer</span> <span class="o">=</span> <span class="n">AIOKafkaProducer</span><span class="p">(</span><span class="n">bootstrap_servers</span><span class="o">=</span><span class="n">kafka_config</span><span class="p">[</span><span class="s2">&quot;bootstrap_servers&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_async</span><span class="p">:</span>
+            <span class="n">producer</span> <span class="o">=</span> <span class="n">AIOKafkaProducerManager</span><span class="p">(</span><span class="n">producer</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="n">producer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">app</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span> <span class="o">=</span> <span class="p">{</span><span class="n">topic</span><span class="p">:</span> <span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="p">{})}</span>
+
+            <span class="n">test_func</span> <span class="o">=</span> <span class="n">produce_decorator</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">test_func</span><span class="p">)</span> <span class="o">==</span> <span class="n">is_async</span>
+
+            <span class="n">mock_msg</span> <span class="o">=</span> <span class="n">MockMsg</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_async</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">mock_msg</span><span class="p">)</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">test_func</span><span class="p">(</span><span class="n">mock_msg</span><span class="p">)</span>
+
+            <span class="n">send_mock</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">mock_msg</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+            <span class="k">assert</span> <span class="n">value</span> <span class="o">==</span> <span class="n">mock_msg</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">producer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+
+<span class="k">for</span> <span class="n">is_async</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]:</span>
+    <span class="k">await</span> <span class="n">test_me</span><span class="p">(</span><span class="n">is_async</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+ok
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L418"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="fastkafkaapiproduces">FastKafkaAPI.produces<a class="headerlink" href="#fastkafkaapiproduces" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> FastKafkaAPI.produces (topic:Optional[str]=None, prefix:str=&#39;to_&#39;,
+                        producer:aiokafka.producer.producer.AIOKafkaProduc
+                        er=None, **kwargs:Dict[str,Any])
+</code></pre></div>
+</blockquote>
+<p>Decorator registering the callback called when delivery report for a
+produced message is received</p>
+<p>This function decorator is also responsible for registering topics for
+AsyncAPI specificiation and documentation.</p>
+<p>Params: topic: Kafka topic that the producer will send returned values
+from the decorated function to, default: None If the topic is not
+specified, topic name will be inferred from the decorated function name
+by stripping the defined prefix prefix: Prefix stripped from the
+decorated function to define a topic name if the topic argument is not
+passed, default: “to_” If the decorated function name is not prefixed
+with the defined prefix and topic argument is not passed, then this
+method will throw ValueError producer: **kwargs: Keyword arguments
+that will be passed to AIOKafkaProducer, used to configure the producer</p>
+<p>Returns: A function returning the same function</p>
+<p>Throws: ValueError</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+
+<span class="c1"># Basic check</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">to_my_topic_1</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="c1"># Must be done without sugar to keep the original function reference</span>
+<span class="n">check_func</span> <span class="o">=</span> <span class="n">to_my_topic_1</span>
+<span class="n">to_my_topic_1</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">produces</span><span class="p">()(</span><span class="n">to_my_topic_1</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="s2">&quot;my_topic_1&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">check_func</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="p">{},</span>
+<span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">to_my_topic_1</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Check topic setting</span>
+<span class="k">def</span> <span class="nf">some_func_name</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="n">check_func</span> <span class="o">=</span> <span class="n">some_func_name</span>
+<span class="n">some_func_name</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">produces</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;test_topic_2&quot;</span><span class="p">)(</span><span class="n">some_func_name</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="s2">&quot;test_topic_2&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">check_func</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="p">{},</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span>
+
+<span class="c1"># Check prefix change</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;for_&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">for_test_topic_3</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+<span class="n">check_func</span> <span class="o">=</span> <span class="n">for_test_topic_3</span>
+<span class="n">some_func_name</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">produces</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;for_&quot;</span><span class="p">)(</span><span class="n">for_test_topic_3</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="s2">&quot;test_topic_3&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">check_func</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="p">{},</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span>
+
+<span class="c1"># Check passing of kwargs</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;arg1&quot;</span><span class="p">:</span> <span class="s2">&quot;val1&quot;</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">for_test_kwargs</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="n">check_func</span> <span class="o">=</span> <span class="n">for_test_kwargs</span>
+<span class="n">for_test_kwargs</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">produces</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;test_topic&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)(</span><span class="n">for_test_kwargs</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="s2">&quot;test_topic&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+    <span class="n">check_func</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="p">,</span>
+<span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span>
+
+<span class="c1"># Check passing of custom Producer</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">test_me</span><span class="p">():</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;arg1&quot;</span><span class="p">:</span> <span class="s2">&quot;val1&quot;</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">for_test_producer</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="n">check_func</span> <span class="o">=</span> <span class="n">for_test_producer</span>
+    <span class="n">producer</span> <span class="o">=</span> <span class="n">AIOKafkaProducer</span><span class="p">()</span>
+    <span class="n">for_test_producer</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">produces</span><span class="p">(</span>
+        <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;test_producer&quot;</span><span class="p">,</span> <span class="n">producer</span><span class="o">=</span><span class="n">producer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)(</span><span class="n">for_test_producer</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="p">[</span><span class="s2">&quot;test_producer&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span>
+        <span class="n">check_func</span><span class="p">,</span>
+        <span class="n">producer</span><span class="p">,</span>
+        <span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">),</span> <span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span>
+
+
+<span class="k">await</span> <span class="n">test_me</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L465"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="fastkafkaapirun_in_background">FastKafkaAPI.run_in_background<a class="headerlink" href="#fastkafkaapirun_in_background" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> FastKafkaAPI.run_in_background ()
+</code></pre></div>
+</blockquote>
+<p>Decorator to schedule a task to be run in the background.</p>
+<p>This decorator is used to schedule a task to be run in the background
+when the app’s <code>_on_startup</code> event is triggered.</p>
+<p>Returns: Callable[None, None]: A decorator function that takes a
+background task as an input and stores it to be run in the backround.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check if the background job is getting registered</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">run_in_background</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">async_background_job</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">async_background_job</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MyInfo</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">mobile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;+385987654321&quot;</span><span class="p">)</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;James Bond&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MyMsgUrl</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">info</span><span class="p">:</span> <span class="n">MyInfo</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="s2">&quot;+385987654321&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;James Bond&quot;</span><span class="p">))</span>
+    <span class="n">url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;https://sis.gov.uk/agents/007&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MyMsgEmail</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">msg_url</span><span class="p">:</span> <span class="n">MyMsgUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">example</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">info</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="s2">&quot;+385987654321&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;James Bond&quot;</span><span class="p">),</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://sis.gov.uk/agents/007&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">EmailStr</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;agent-007@sis.gov.uk&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">setup_testing_app</span><span class="p">():</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">(</span><span class="s2">&quot;my_topic_1&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_my_topic_one</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">MyMsgUrl</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_my_topic_one(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">,)&quot;</span><span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_my_topic_2</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">MyMsgEmail</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_my_topic_2(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">,)&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+        <span class="nd">@app</span><span class="o">.</span><span class="n">consumes</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">my_topic_3</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">MyMsgEmail</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">to_my_topic_3</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyMsgUrl</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_my_topic_3(msg=</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">MyMsgUrl</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">MyInfo</span><span class="p">(</span><span class="s2">&quot;+3851987654321&quot;</span><span class="p">,</span> <span class="s2">&quot;Sean Connery&quot;</span><span class="p">),</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">to_my_topic_4</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">MyMsgEmail</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyMsgEmail</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_my_topic_4(msg=</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">to_my_topic_5</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyMsgUrl</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on_my_topic_5(msg=</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">MyMsgUrl</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">MyInfo</span><span class="p">(</span><span class="s2">&quot;+3859123456789&quot;</span><span class="p">,</span> <span class="s2">&quot;John Wayne&quot;</span><span class="p">),</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">run_in_background</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">long_bg_job</span><span class="p">():</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> 
+
+    <span class="k">return</span> <span class="n">app</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_consumers_store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;my_topic_1&quot;</span><span class="p">,</span> <span class="s2">&quot;my_topic_2&quot;</span><span class="p">])</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_producers_store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;my_topic_3&quot;</span><span class="p">,</span> <span class="s2">&quot;my_topic_4&quot;</span><span class="p">,</span> <span class="s2">&quot;my_topic_5&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;app._kafka_service_info=</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">_kafka_service_info</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;app._kafka_brokers=</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">_kafka_brokers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>app._kafka_service_info=title=&#39;FastAPI&#39; version=&#39;0.1.0&#39; description=&#39;&#39; contact=ContactInfo(name=&#39;Author&#39;, url=HttpUrl(&#39;https://www.google.com&#39;, ), email=&#39;noreply@gmail.com&#39;)
+app._kafka_brokers=brokers={&#39;local&#39;: KafkaBroker(url=&#39;kafka&#39;, description=&#39;Local (dev) Kafka broker&#39;, port=&#39;9092&#39;, protocol=&#39;kafka&#39;, security=None)}
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L498"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="filter_using_signature">filter_using_signature<a class="headerlink" href="#filter_using_signature" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> filter_using_signature (f:Callable, **kwargs:Dict[str,Any])
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">assert</span> <span class="n">filter_using_signature</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">_populate_consumers</span><span class="p">(</span><span class="n">is_shutting_down_f</span><span class="o">=</span><span class="n">true_after</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_kafka_consumer_tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_shutdown_consumers</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">_kafka_consumer_tasks</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting...
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created using the following parameters: {&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;, &#39;auto_offset_reset&#39;: &#39;earliest&#39;, &#39;max_poll_records&#39;: 100, &#39;group_id&#39;: &#39;davor-fast-kafka-api-kafka-1:9092_group&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting...
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created using the following parameters: {&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;, &#39;auto_offset_reset&#39;: &#39;earliest&#39;, &#39;max_poll_records&#39;: 100, &#39;group_id&#39;: &#39;davor-fast-kafka-api-kafka-1:9092_group&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;my_topic_2&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;my_topic_2&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;my_topic_1&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;my_topic_1&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[INFO] aiokafka.consumer.group_coordinator: Discovered coordinator 1003 for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Revoking previously assigned partitions set() for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: (Re-)joining group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Discovered coordinator 1003 for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Revoking previously assigned partitions set() for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: (Re-)joining group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Joined group &#39;davor-fast-kafka-api-kafka-1:9092_group&#39; (generation 35) with member_id aiokafka-0.8.0-153f9135-a8f1-427a-9294-9502ecdffd63
+[INFO] aiokafka.consumer.group_coordinator: Elected group leader -- performing partition assignments using roundrobin
+[INFO] aiokafka.consumer.group_coordinator: (Re-)joining group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Joined group &#39;davor-fast-kafka-api-kafka-1:9092_group&#39; (generation 36) with member_id aiokafka-0.8.0-153f9135-a8f1-427a-9294-9502ecdffd63
+[INFO] aiokafka.consumer.group_coordinator: Elected group leader -- performing partition assignments using roundrobin
+[INFO] aiokafka.consumer.group_coordinator: Joined group &#39;davor-fast-kafka-api-kafka-1:9092_group&#39; (generation 36) with member_id aiokafka-0.8.0-89c1de18-adff-4ecd-841d-17d743aed8c6
+[INFO] aiokafka.consumer.group_coordinator: Metadata for topic has changed from {&#39;my_topic_2&#39;: 1} to {&#39;my_topic_1&#39;: 1, &#39;my_topic_2&#39;: 1}. 
+[INFO] aiokafka.consumer.group_coordinator: Successfully synced group davor-fast-kafka-api-kafka-1:9092_group with generation 36
+[INFO] aiokafka.consumer.group_coordinator: Setting newly assigned partitions {TopicPartition(topic=&#39;my_topic_2&#39;, partition=0)} for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Successfully synced group davor-fast-kafka-api-kafka-1:9092_group with generation 36
+[INFO] aiokafka.consumer.group_coordinator: Setting newly assigned partitions {TopicPartition(topic=&#39;my_topic_1&#39;, partition=0)} for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: LeaveGroup request succeeded
+[INFO] aiokafka.consumer.group_coordinator: LeaveGroup request succeeded
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_populate_producers</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_shutdown_producers</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_producers_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">_producers_list</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+
+[&lt;fast_kafka_api._components.aiokafka_producer_manager.AIOKafkaProducerManager&gt;,
+ &lt;aiokafka.producer.producer.AIOKafkaProducer&gt;,
+ &lt;fast_kafka_api._components.aiokafka_producer_manager.AIOKafkaProducerManager&gt;]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_populate_bg_tasks</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_scheduled_bg_tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_bg_task_group_generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">_bg_tasks_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_shutdown_bg_tasks</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/fast-kafka-api/blob/main/fast_kafka_api/application.py#L634"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="fastkafkaapigenerate_async_spec">FastKafkaAPI.generate_async_spec<a class="headerlink" href="#fastkafkaapigenerate_async_spec" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> FastKafkaAPI.generate_async_spec ()
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">generate_async_spec</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] fast_kafka_api._components.asyncapi: Old async specifications at &#39;/tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml&#39; does not exist.
+[INFO] fast_kafka_api._components.asyncapi: New async specifications generated at: &#39;/tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml&#39;
+[INFO] fast_kafka_api._components.asyncapi: Async docs generated at &#39;/tmp/000_FastKafkaAPI/asyncapi/docs&#39;
+[INFO] fast_kafka_api._components.asyncapi: Output of &#39;$ npx -y -p @asyncapi/generator ag /tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml @asyncapi/html-template -o /tmp/000_FastKafkaAPI/asyncapi/docs --force-write&#39;
+
+Done! ✨
+Check out your shiny new generated files at /tmp/000_FastKafkaAPI/asyncapi/docs.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start_test_app</span><span class="p">():</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">setup_testing_app</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_startup</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">app</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_shutdown</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">expected</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;asyncapi: 2.5.0</span>
+<span class="s2">info:</span>
+<span class="s2">  description: &#39;&#39;</span>
+<span class="s2">  title: FastAPI</span>
+<span class="s2">  version: 0.1.0</span>
+<span class="s2">  contact:</span>
+<span class="s2">    email: noreply@gmail.com</span>
+<span class="s2">    name: Author</span>
+<span class="s2">    url: https://www.google.com</span>
+<span class="s2">servers:</span>
+<span class="s2">  local:</span>
+<span class="s2">    description: Local (dev) Kafka broker</span>
+<span class="s2">    protocol: kafka</span>
+<span class="s2">    url: kafka</span>
+<span class="s2">    variables:</span>
+<span class="s2">      port:</span>
+<span class="s2">        default: &#39;9092&#39;</span>
+<span class="s2">channels:</span>
+<span class="s2">  my_topic_1:</span>
+<span class="s2">    subscribe:</span>
+<span class="s2">      message:</span>
+<span class="s2">        $ref: &#39;#/components/messages/MyMsgUrl&#39;</span>
+<span class="s2">  my_topic_2:</span>
+<span class="s2">    subscribe:</span>
+<span class="s2">      message:</span>
+<span class="s2">        $ref: &#39;#/components/messages/MyMsgEmail&#39;</span>
+<span class="s2">  my_topic_3:</span>
+<span class="s2">    publish:</span>
+<span class="s2">      message:</span>
+<span class="s2">        $ref: &#39;#/components/messages/MyMsgUrl&#39;</span>
+<span class="s2">  my_topic_4:</span>
+<span class="s2">    publish:</span>
+<span class="s2">      message:</span>
+<span class="s2">        $ref: &#39;#/components/messages/MyMsgEmail&#39;</span>
+<span class="s2">  my_topic_5:</span>
+<span class="s2">    publish:</span>
+<span class="s2">      message:</span>
+<span class="s2">        $ref: &#39;#/components/messages/MyMsgUrl&#39;</span>
+<span class="s2">components:</span>
+<span class="s2">  messages:</span>
+<span class="s2">    MyMsgEmail:</span>
+<span class="s2">      payload:</span>
+<span class="s2">        example:</span>
+<span class="s2">          email: agent-007@sis.gov.uk</span>
+<span class="s2">          msg_url:</span>
+<span class="s2">            info:</span>
+<span class="s2">              mobile: &#39;+385987654321&#39;</span>
+<span class="s2">              name: James Bond</span>
+<span class="s2">            url: https://sis.gov.uk/agents/007</span>
+<span class="s2">        properties:</span>
+<span class="s2">          email:</span>
+<span class="s2">            example: agent-007@sis.gov.uk</span>
+<span class="s2">            format: email</span>
+<span class="s2">            title: Email</span>
+<span class="s2">            type: string</span>
+<span class="s2">          msg_url:</span>
+<span class="s2">            allOf:</span>
+<span class="s2">            - $ref: &#39;#/components/messages/MyMsgUrl&#39;</span>
+<span class="s2">            example:</span>
+<span class="s2">              info:</span>
+<span class="s2">                mobile: &#39;+385987654321&#39;</span>
+<span class="s2">                name: James Bond</span>
+<span class="s2">              url: https://sis.gov.uk/agents/007</span>
+<span class="s2">            title: Msg Url</span>
+<span class="s2">        required:</span>
+<span class="s2">        - msg_url</span>
+<span class="s2">        - email</span>
+<span class="s2">        title: MyMsgEmail</span>
+<span class="s2">        type: object</span>
+<span class="s2">    MyMsgUrl:</span>
+<span class="s2">      payload:</span>
+<span class="s2">        example:</span>
+<span class="s2">          info:</span>
+<span class="s2">            mobile: &#39;+385987654321&#39;</span>
+<span class="s2">            name: James Bond</span>
+<span class="s2">          url: https://sis.gov.uk/agents/007</span>
+<span class="s2">        properties:</span>
+<span class="s2">          info:</span>
+<span class="s2">            allOf:</span>
+<span class="s2">            - $ref: &#39;#/components/schemas/MyInfo&#39;</span>
+<span class="s2">            example:</span>
+<span class="s2">              mobile: &#39;+385987654321&#39;</span>
+<span class="s2">              name: James Bond</span>
+<span class="s2">            title: Info</span>
+<span class="s2">          url:</span>
+<span class="s2">            example: https://sis.gov.uk/agents/007</span>
+<span class="s2">            format: uri</span>
+<span class="s2">            maxLength: 2083</span>
+<span class="s2">            minLength: 1</span>
+<span class="s2">            title: Url</span>
+<span class="s2">            type: string</span>
+<span class="s2">        required:</span>
+<span class="s2">        - info</span>
+<span class="s2">        - url</span>
+<span class="s2">        title: MyMsgUrl</span>
+<span class="s2">        type: object</span>
+<span class="s2">  schemas:</span>
+<span class="s2">    MyInfo:</span>
+<span class="s2">      payload:</span>
+<span class="s2">        properties:</span>
+<span class="s2">          mobile:</span>
+<span class="s2">            example: &#39;+385987654321&#39;</span>
+<span class="s2">            title: Mobile</span>
+<span class="s2">            type: string</span>
+<span class="s2">          name:</span>
+<span class="s2">            example: James Bond</span>
+<span class="s2">            title: Name</span>
+<span class="s2">            type: string</span>
+<span class="s2">        required:</span>
+<span class="s2">        - mobile</span>
+<span class="s2">        - name</span>
+<span class="s2">        title: MyInfo</span>
+<span class="s2">        type: object</span>
+<span class="s2">  securitySchemes: </span><span class="si">{}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">test_me</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">d1</span>
+    <span class="k">global</span> <span class="n">d2</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">start_test_app</span><span class="p">()</span> <span class="k">as</span> <span class="n">app</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">_fast_api_app</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/asyncapi.yml&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">d2</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">d1</span> <span class="o">==</span> <span class="n">d2</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d1</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">d2</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_me</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] fast_kafka_api._components.asyncapi: Old async specifications at &#39;/tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml&#39; does not exist.
+[INFO] fast_kafka_api._components.asyncapi: New async specifications generated at: &#39;/tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml&#39;
+[INFO] fast_kafka_api._components.asyncapi: Async docs generated at &#39;/tmp/000_FastKafkaAPI/asyncapi/docs&#39;
+[INFO] fast_kafka_api._components.asyncapi: Output of &#39;$ npx -y -p @asyncapi/generator ag /tmp/000_FastKafkaAPI/asyncapi/spec/asyncapi.yml @asyncapi/html-template -o /tmp/000_FastKafkaAPI/asyncapi/docs --force-write&#39;
+
+Done! ✨
+Check out your shiny new generated files at /tmp/000_FastKafkaAPI/asyncapi/docs.
+
+
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting...
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created using the following parameters: {&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;, &#39;auto_offset_reset&#39;: &#39;earliest&#39;, &#39;max_poll_records&#39;: 100, &#39;group_id&#39;: &#39;davor-fast-kafka-api-kafka-1:9092_group&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() starting...
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer created using the following parameters: {&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;, &#39;auto_offset_reset&#39;: &#39;earliest&#39;, &#39;max_poll_records&#39;: 100, &#39;group_id&#39;: &#39;davor-fast-kafka-api-kafka-1:9092_group&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;my_topic_1&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;my_topic_1&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer started.
+[INFO] aiokafka.consumer.subscription_state: Updating subscribed topics to: frozenset({&#39;my_topic_2&#39;})
+[INFO] aiokafka.consumer.consumer: Subscribed to topic(s): {&#39;my_topic_2&#39;}
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer subscribed.
+[INFO] aiokafka.consumer.group_coordinator: Discovered coordinator 1003 for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Revoking previously assigned partitions set() for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: (Re-)joining group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Discovered coordinator 1003 for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Revoking previously assigned partitions set() for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: (Re-)joining group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: Joined group &#39;davor-fast-kafka-api-kafka-1:9092_group&#39; (generation 38) with member_id aiokafka-0.8.0-643f3079-8880-43c3-89d4-04d536508649
+[INFO] aiokafka.consumer.group_coordinator: Elected group leader -- performing partition assignments using roundrobin
+[INFO] aiokafka.consumer.group_coordinator: Joined group &#39;davor-fast-kafka-api-kafka-1:9092_group&#39; (generation 39) with member_id aiokafka-0.8.0-b9d667ec-542d-48c6-8812-bbd9a67b5e1b
+[INFO] aiokafka.consumer.group_coordinator: Elected group leader -- performing partition assignments using roundrobin
+[INFO] aiokafka.consumer.group_coordinator: LeaveGroup request succeeded
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+[INFO] aiokafka.consumer.group_coordinator: Successfully synced group davor-fast-kafka-api-kafka-1:9092_group with generation 39
+[INFO] aiokafka.consumer.group_coordinator: Setting newly assigned partitions {TopicPartition(topic=&#39;my_topic_2&#39;, partition=0)} for group davor-fast-kafka-api-kafka-1:9092_group
+[INFO] aiokafka.consumer.group_coordinator: LeaveGroup request succeeded
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop(): Consumer stopped.
+[INFO] fast_kafka_api._components.aiokafka_consumer_loop: aiokafka_consumer_loop() finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+ok
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># don&#39;t wait for specs to be generated (takes 10 sec or so)</span>
+<span class="k">with</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;__main__.export_async_spec&quot;</span><span class="p">):</span>
+
+    <span class="c1"># mock up send method of AIOKafkaProducer</span>
+    <span class="k">with</span> <span class="n">mock_AIOKafkaProducer_send</span><span class="p">()</span> <span class="k">as</span> <span class="n">mock</span><span class="p">:</span>
+
+        <span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+
+        <span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">to_my_test_topic</span><span class="p">(</span><span class="n">mobile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyMsgUrl</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">MyMsgUrl</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="n">mobile</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;James Bond&quot;</span><span class="p">),</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">msg</span>
+
+        <span class="nd">@app</span><span class="o">.</span><span class="n">produces</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">to_my_test_topic_2</span><span class="p">(</span><span class="n">mobile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyMsgUrl</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">MyMsgUrl</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="n">mobile</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;James Bond&quot;</span><span class="p">),</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">msg</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_startup</span><span class="p">()</span>
+            <span class="k">await</span> <span class="n">to_my_test_topic</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="s2">&quot;+385912345678&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.vip.hr&quot;</span><span class="p">)</span>
+            <span class="n">to_my_test_topic_2</span><span class="p">(</span><span class="n">mobile</span><span class="o">=</span><span class="s2">&quot;+385987654321&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.ht.hr&quot;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_shutdown</span><span class="p">()</span>
+
+        <span class="n">mock</span><span class="o">.</span><span class="n">assert_has_calls</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                    <span class="s2">&quot;my_test_topic&quot;</span><span class="p">,</span>
+                    <span class="sa">b</span><span class="s1">&#39;{&quot;info&quot;: {&quot;mobile&quot;: &quot;+385912345678&quot;, &quot;name&quot;: &quot;James Bond&quot;}, &quot;url&quot;: &quot;https://www.vip.hr&quot;}&#39;</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                    <span class="s2">&quot;my_test_topic_2&quot;</span><span class="p">,</span>
+                    <span class="sa">b</span><span class="s1">&#39;{&quot;info&quot;: {&quot;mobile&quot;: &quot;+385987654321&quot;, &quot;name&quot;: &quot;James Bond&quot;}, &quot;url&quot;: &quot;https://www.ht.hr&quot;}&#39;</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] __main__: _create_producer() : created producer using the config: &#39;{&#39;bootstrap_servers&#39;: &#39;davor-fast-kafka-api-kafka-1:9092&#39;}&#39;
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Starting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.start(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Entering...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting send_stream
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Exiting task group
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: _aiokafka_producer_manager(): Finished.
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Stoping producer...
+[INFO] fast_kafka_api._components.aiokafka_producer_manager: AIOKafkaProducerManager.stop(): Finished
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># don&#39;t wait for specs to be generated (takes 10 sec or so)</span>
+<span class="k">with</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;__main__.export_async_spec&quot;</span><span class="p">):</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_testing_app</span><span class="p">()</span>
+    <span class="n">fast_task</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+    <span class="n">long_task</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">run_in_background</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">bg_task</span><span class="p">():</span>
+        <span class="n">fast_task</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">long_task</span><span class="p">()</span>
+
+    <span class="n">fast_task_second</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+    <span class="n">long_task_second</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">run_in_background</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">bg_task_second</span><span class="p">():</span>
+        <span class="n">fast_task_second</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">long_task_second</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_startup</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">_on_shutdown</span><span class="p">()</span>
+
+    <span class="n">fast_task</span><span class="o">.</span><span class="n">assert_called</span><span class="p">()</span>
+    <span class="n">long_task</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
+
+    <span class="n">fast_task_second</span><span class="o">.</span><span class="n">assert_called</span><span class="p">()</span>
+    <span class="n">long_task_second</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ok
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 onwards, airt
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    and
+    <a href="https://nbdev-mkdocs.airt.ai/" target="_blank" rel="noopener">
+      Material for nbdev
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../overrides/js/extra.js"></script>
+      
+        <script src="../overrides/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
